@@ -15,7 +15,6 @@ router.get('/books',(req,res)=> {
 
 router.post('/new_book',(req,res)=>{
     const {name,authorname,description}=req.body;
-    //validacion
     const books={
         id:bookID.v4(),
         name,
@@ -50,7 +49,7 @@ router.get('/get/:id' ,(req,res)=>{
 router.post('/editbooks',(req,res)=>{
     const currentData = JSON.parse(fs.readFileSync('src/books.json'));
     currentData.forEach(books=> {
-        if(books.id == req.body.id) {
+        if(books.bookID == req.body.id) {
             books.name = req.body.name.length == 0 ? books.name : req.body.name;
             books.authorname = req.body.authorname.length == 0 ? books.authorname : req.body.authorname;
             books.description = req.body.description.length == 0 ? books.description : req.body.description;
